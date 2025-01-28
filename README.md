@@ -20,8 +20,6 @@ Z-scores are caculated using following formula:
 
 
 ```{R}
-
-
 processed_data <- processed_data %>%
   mutate(
     z_alpha = ifelse(Age < 18,
@@ -61,15 +59,10 @@ The formula for <a href="https://latex.codecogs.com/svg.image?Z_{BMI}"><img src=
 <a href="https://latex.codecogs.com/svg.image?Z_{BMI}=BMI&space;"><img src="https://latex.codecogs.com/svg.image?Z_{BMI}=BMI&space;" /></a>
 
 
-
-
-# Calculate BMI Z-Score for Children and Adolescents
 ```{R}
 
-
-### BMI Cut-off Assignment 
-# Adult BMI reference values
-adult_ref <- c(16, 17, 18.5, 25, 30, 35)
+# BMI Cut-off Assignment 
+adult_ref <- c(16, 17, 18.5, 25, 30, 35) # Adult BMI reference values
 
 # Function to assign iso-BMI based on cut-offs
 assign_iso_bmi <- function(bmi, cutoffs) {
