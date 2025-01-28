@@ -17,6 +17,33 @@ Z-scores are caculated using following formula:
 
 <a href="https://latex.codecogs.com/svg.image?Z_{ind}=\frac{\left(BMI/M\right)^{L}-1}{L\times&space;S}"><img src="https://latex.codecogs.com/svg.image?Z_{ind}=\frac{\left(BMI/M\right)^{L}-1}{L\times&space;S}" /></a>
 
+
+
+```{R}
+
+
+processed_data <- processed_data %>%
+  mutate(
+    z_alpha = ifelse(Age < 18,
+                     (((BMI / M)^L) - 1) / (L * S),
+                     NA_real_)
+  )
+
+# Calculate z_bmi using Cole & Lobstein formula
+processed_data <- processed_data %>%
+  mutate(
+    z_bmi = case_when(
+      Age >= 18 ~ BMI,  # Use original BMI for adults
+      Sex == "Male" ~ 20.759 * (1 + (-1.487) * 0.12395 * z_alpha)^(1 / (-1.487)),
+      Sex == "Female" ~ 20.792 * (1 + (-1.423) * 0.13033 * z_alpha)^(1 / (-1.423)),
+      TRUE ~ NA_real_
+    ),
+    z_bmi = round(z_bmi, 4)  # Round to 4 decimal places
+  )
+
+```
+
+
 ### Formula 2: 
 The formula for <a href="https://latex.codecogs.com/svg.image?Z_{BMI}"><img src="https://latex.codecogs.com/svg.image?Z_{BMI}" /></a> depends on the value of `Sex` and `age < 18`:
 
@@ -87,46 +114,6 @@ write.csv(final_data, "final_iso_bmi_results2.csv", row.names = FALSE)
 head(final_data)
 
 ```
-
-
-
-## Core Calculations ###
-```{R}
-# Calculate z-alpha
-
-processed_data <- processed_data %>%
-  mutate(
-    z_alpha = ifelse(Age < 18,
-                     (((BMI / M)^L) - 1) / (L * S),
-                     NA_real_)
-  )
-
-# Calculate z_bmi using Cole & Lobstein formula
-processed_data <- processed_data %>%
-  mutate(
-    z_bmi = case_when(
-      Age >= 18 ~ BMI,  # Use original BMI for adults
-      Sex == "Male" ~ 20.759 * (1 + (-1.487) * 0.12395 * z_alpha)^(1 / (-1.487)),
-      Sex == "Female" ~ 20.792 * (1 + (-1.423) * 0.13033 * z_alpha)^(1 / (-1.423)),
-      TRUE ~ NA_real_
-    ),
-    z_bmi = round(z_bmi, 4)  # Round to 4 decimal places
-  )
-
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
