@@ -4,8 +4,7 @@
 
 ## iso-BMI -  Calculation of z-scores from LMS refernce values and LOFT cutoffs
 
-This package allows to calculate BMI and height z scores 
-using LMS reference parameters in R. 
+This code allows to calculate BMI z scores using LMS reference parameters in R. 
 
 Z scores are caculated using following formula: 
 
