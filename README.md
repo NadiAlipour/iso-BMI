@@ -6,21 +6,17 @@
 
 This code allows to calculate BMI z-scores using LMS reference coefficients in R. 
 
-Reference:
-Cole TJ, Green PJ (1992). Smoothing reference centile curves: the LMS method and penalized likelihood. Statistics in Medicine, 11:1305–1319.
-
 
 ## BMI Calculation Formulas
 
-### Formula 1: \( z_{alpha} \)
-The formula for \( z_{alpha} \) is:
+### Formula 1: 
 Z-scores are caculated using following formula: 
 
 
 <a href="https://latex.codecogs.com/svg.image?Z_{ind}=\frac{\left(BMI/M\right)^{L}-1}{L\times&space;S}"><img src="https://latex.codecogs.com/svg.image?Z_{ind}=\frac{\left(BMI/M\right)^{L}-1}{L\times&space;S}" /></a>
 
-### Formula 2: \( z_{bmi} \) Based on Sex
-The formula for \( z_{bmi} \) depends on the value of `Sex`:
+### Formula 2: 
+The formula for <a href="https://latex.codecogs.com/svg.image?Z_{BMI}"><img src="https://latex.codecogs.com/svg.image?Z_{BMI}" /></a> depends on the value of `Sex`:
 
 - If `Sex == 1` (Boys)
   \
@@ -34,5 +30,12 @@ The formula for \( z_{bmi} \) depends on the value of `Sex`:
 - If `age >= 18`:
   \
 <a href="https://latex.codecogs.com/svg.image?Z_{BMI}=BMI&space;"><img src="https://latex.codecogs.com/svg.image?Z_{BMI}=BMI&space;" /></a>
+
+
+
+
+## Reference
+
+Cole TJ, Lobstein T. Extended international (IOTF) body mass index cut‐offs for thinness, overweight and obesity. Pediatric obesity. 2012 Aug;7(4):284-94.
 
 
