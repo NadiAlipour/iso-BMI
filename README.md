@@ -12,10 +12,10 @@ Z-scores are caculated using following formula:
 
 
 
+https://editor.codecogs.com/?latex=Z_{ind}&space;=&space;\frac{\left&space;[&space;y/M(t)&space;\right&space;]^{L(t)}&space;-&space;1}{S(t)L(t)}%22%20target=%22_blank
 
 
-
-
+https://latex.codecogs.com/svg.image?20.759\times\left(1&plus;\left(-1.487\right)\times&space;Z_{BMI}\right)^{\left(1/-1.487\right)}
 
 
 Reference:
