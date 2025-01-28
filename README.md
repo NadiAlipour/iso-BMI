@@ -26,21 +26,7 @@ processed_data <- processed_data %>%
                      (((BMI / M)^L) - 1) / (L * S),
                      NA_real_)
   )
-
-# Calculate z_bmi using Cole & Lobstein formula
-processed_data <- processed_data %>%
-  mutate(
-    z_bmi = case_when(
-      Age >= 18 ~ BMI,  # Use original BMI for adults
-      Sex == "Male" ~ 20.759 * (1 + (-1.487) * 0.12395 * z_alpha)^(1 / (-1.487)),
-      Sex == "Female" ~ 20.792 * (1 + (-1.423) * 0.13033 * z_alpha)^(1 / (-1.423)),
-      TRUE ~ NA_real_
-    ),
-    z_bmi = round(z_bmi, 4)  # Round to 4 decimal places
-  )
-
 ```
-
 
 ### Formula 2: 
 The formula for <a href="https://latex.codecogs.com/svg.image?Z_{BMI}"><img src="https://latex.codecogs.com/svg.image?Z_{BMI}" /></a> depends on the value of `Sex` and `age < 18`:
@@ -57,6 +43,23 @@ The formula for <a href="https://latex.codecogs.com/svg.image?Z_{BMI}"><img src=
 - If `age >= 18`:
   \
 <a href="https://latex.codecogs.com/svg.image?Z_{BMI}=BMI&space;"><img src="https://latex.codecogs.com/svg.image?Z_{BMI}=BMI&space;" /></a>
+
+
+```{R}
+# Calculate z_bmi using Cole & Lobstein formula
+processed_data <- processed_data %>%
+  mutate(
+    z_bmi = case_when(
+      Age >= 18 ~ BMI,  # Use original BMI for adults
+      Sex == "Male" ~ 20.759 * (1 + (-1.487) * 0.12395 * z_alpha)^(1 / (-1.487)),
+      Sex == "Female" ~ 20.792 * (1 + (-1.423) * 0.13033 * z_alpha)^(1 / (-1.423)),
+      TRUE ~ NA_real_
+    ),
+    z_bmi = round(z_bmi, 4)  # Round to 4 decimal places
+  )
+
+```
+
 
 
 ```{R}
