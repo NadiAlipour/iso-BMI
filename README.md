@@ -26,11 +26,10 @@ The formula for \( z_{alpha} \) is:
 The formula for \( z_{bmi} \) depends on the value of `Sex`:
 
 - If `Sex == 1` (Boys)
-  \[
-  z_{bmi} =  
+  \
 <a href=" https://latex.codecogs.com/svg.image?Z_{BMI}=20.759\times\left(1&plus;\left(-1.487\right)\times&space;Z_{BMI}\right)^{\left(1/-1.487\right)}"><img src=" https://latex.codecogs.com/svg.image?Z_{BMI}=20.759\times\left(1&plus;\left(-1.487\right)\times&space;Z_{BMI}\right)^{\left(1/-1.487\right)}" /></a>
 
-  \]
+  \
 
 - If `Sex == 0` (Girls):
   \[
