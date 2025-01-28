@@ -24,7 +24,7 @@ The formula for <a href="https://latex.codecogs.com/svg.image?Z_{BMI}"><img src=
 
 - If `Sex == 0` (Girls):
   \
-<a href="https://latex.codecogs.com/svg.image?Z_{BMI}=20.792\times\left(1&plus;\left(-1.423\right)\times&space;Z_{ind}\right)^{\left(1/-1.423\right)}"><img src="https://latex.codecogs.com/svg.image?Z_{ind}=20.792\times\left(1&plus;\left(-1.423\right)\times&space;Z_{BMI}\right)^{\left(1/-1.423\right)}" /></a>
+<a href="https://latex.codecogs.com/svg.image?Z_{BMI}=20.792\times\left(1&plus;\left(-1.423\right)\times&space;Z_{ind}\right)^{\left(1/-1.423\right)}"><img src="https://latex.codecogs.com/svg.image?Z_{BMI}=20.792\times\left(1&plus;\left(-1.423\right)\times&space;Z_{ind}\right)^{\left(1/-1.423\right)}" /></a>
 
 
 - If `age >= 18`:
