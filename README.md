@@ -2,7 +2,7 @@
 
 
 
-## iso-BMI -  Calculation of z-scores from LMS refernce values and LOFT cutoffs
+## iso-BMI -  Calculation of z-scores from BMI LMS coefficients corresponding to the international (LOTF) ct-offs
 
 This code allows to calculate BMI z scores using LMS reference parameters in R. 
 
@@ -12,3 +12,6 @@ Z scores are caculated using following formula:
 
 Reference:
 Cole TJ, Green PJ (1992). Smoothing reference centile curves: the LMS method and penalized likelihood. Statistics in Medicine, 11:1305–1319.
+
+
+Extended international (IOTF) body mass index cut-offs
