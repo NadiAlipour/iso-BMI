@@ -17,7 +17,7 @@ The formula for \( z_{alpha} \) is:
 Z-scores are caculated using following formula: 
 
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=Z_{ind}&space;=&space;\frac{\left&space;[&space;y/M(t)&space;\right&space;]^{L(t)}&space;-&space;1}{S(t)L(t)}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Z_{ind}&space;=&space;\frac{\left&space;[&space;y/M(t)&space;\right&space;]^{L(t)}&space;-&space;1}{S(t)L(t)}" title="Z_{ind} = \frac{\left [ y/M(t) \right ]^{L(t)} - 1}{S(t)L(t)}" /></a>
+<a href="https://www.codecogs.com/eqnedit.php?latex=Z_{ind}&space;=&space;\frac{\left&space;[&space;y/M&space;\right&space;]^{L}&space;-&space;1}{S(t)L(t)}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Z_{ind}&space;=&space;\frac{\left&space;[&space;y/M(t)&space;\right&space;]^{L(t)}&space;-&space;1}{S(t)L(t)}" title="Z_{ind} = \frac{\left [ y/M(t) \right ]^{L(t)} - 1}{S(t)L(t)}" /></a>
 
 ### Formula 2: \( z_{bmi} \) Based on Sex
 The formula for \( z_{bmi} \) depends on the value of `Sex`:
@@ -31,9 +31,9 @@ The formula for \( z_{bmi} \) depends on the value of `Sex`:
   \
 <a href="https://latex.codecogs.com/svg.image?Z_{BMI}=20.792\times\left(1&plus;\left(-1.423\right)\times&space;Z_{BMI}\right)^{\left(1/-1.423\right)}"><img src="https://latex.codecogs.com/svg.image?Z_{BMI}=20.792\times\left(1&plus;\left(-1.423\right)\times&space;Z_{BMI}\right)^{\left(1/-1.423\right)}" /></a>
 
-  \
 
 - If `age >= 18`:
-  \[
-  z_{bmi} = YH_{BMI}
-  \]
+  \
+<a href="https://latex.codecogs.com/svg.image?Z_{BMI}=BMI&space;"><img src="https://latex.codecogs.com/svg.image?Z_{BMI}=BMI&space;" /></a>
+
+  \
