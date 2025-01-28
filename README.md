@@ -63,7 +63,6 @@ processed_data <- processed_data %>%
 
 
 ```{R}
-
 # BMI Cut-off Assignment 
 adult_ref <- c(16, 17, 18.5, 25, 30, 35) # Adult BMI reference values
 
@@ -111,123 +110,6 @@ head(final_data)
 
 ```
 
-| Age (years) | Boys L | Boys M | Boys S | Girls L | Girls M | Girls S |
-|-------------|--------|--------|--------|---------|---------|---------|
-| 2           | -0.624 | 16.482 | 0.07950| -0.816  | 16.206  | 0.08447 |
-| 2.5         | -0.758 | 16.237 | 0.07911| -0.928  | 15.983  | 0.08417 |
-| 3           | -0.888 | 16.019 | 0.07892| -1.029  | 15.793  | 0.08424 |
-| 3.5         | -1.012 | 15.831 | 0.07905| -1.121  | 15.628  | 0.08476 |
-| 4           | -1.130 | 15.676 | 0.07968| -1.207  | 15.481  | 0.08580 |
-| 4.5         | -1.240 | 15.550 | 0.08107| -1.286  | 15.356  | 0.08755 |
-| 5           | -1.342 | 15.452 | 0.08353| -1.356  | 15.255  | 0.09019 |
-
 ## Reference
 
 Cole TJ, Lobstein T. Extended international (IOTF) body mass index cut‐offs for thinness, overweight and obesity. Pediatric obesity. 2012 Aug;7(4):284-94.
-
-
-
-
-
-
-
-# iso-BMI Calculator
-# Description: This script calculates age- and sex-adjusted iso-BMI using LMS coefficients 
-#              and IOTF cut-offs based on Cole & Lobstein (2012) methodology.
-# Required data:
-#   - LMS.csv: Contains L, M, S parameters by age and sex
-#   - IOTF.csv: Contains BMI cut-offs by age and sex
-#   - Your dataset should contain: Age, Sex (1=Male/2=Female), BMI
-
-# Load required packages
-library(dplyr)
-library(purrr)
-library(readr)
-
-# 1. Data Preparation -----------------------------------------------------
-# Read data with column type specification for safety
-lms_table <- read_csv("LMS.csv", col_types = cols())
-iotf_table <- read_csv("IOTF.csv", col_types = cols())
-raw_data <- read_csv("sim_data.csv", col_types = cols())
-
-# 2. Data Cleaning --------------------------------------------------------
-clean_data <- raw_data %>%
-  # Remove invalid entries (adjust -9 to your missing value code)
-  filter(Age != -9, BMI != -9) %>%
-  mutate(
-    # Convert sex to factor (adjust codes if needed)
-    Sex = case_when(
-      Sex == 1 ~ "Male",
-      Sex == 2 ~ "Female",
-      TRUE ~ NA_character_
-    ),
-    # Round age to nearest 0.5 years (adjust as needed)
-    Age = round(Age * 2) / 2
-  ) %>%
-  # Remove rows with missing values
-  drop_na(Age, Sex, BMI)
-
-# 3. Data Merging ---------------------------------------------------------
-merged_data <- clean_data %>%
-  left_join(lms_table, by = "Age") %>%
-  left_join(iotf_table, by = "Age") %>%
-  mutate(
-    # Extract sex-specific parameters
-    L = if_else(Sex == "Male", L_Boys, L_Girls),
-    M = if_else(Sex == "Male", M_Boys, M_Girls),
-    S = if_else(Sex == "Male", S_Boys, S_Girls),
-    
-    # Extract sex-specific cutoffs
-    across(c(BMI_16:BMI_35), ~ if_else(Sex == "Male", get(paste0("Boys_", cur_column())), 
-                                     get(paste0("Girls_", cur_column()))))
-  )
-
-# 4. Core Calculations ----------------------------------------------------
-# LMS transformation parameters from Cole & Lobstein 2012
-calculated_data <- merged_data %>%
-  mutate(
-    z_alpha = ifelse(Age < 18,
-                     (((BMI / M)^L) - 1) / (L * S),
-                     NA_real_),
-    
-    # Sex-specific transformation to adult equivalent
-    z_bmi = case_when(
-      Age >= 18 ~ BMI,  # Direct use for adults
-      Sex == "Male" ~ 20.759 * (1 + (-1.487)*0.12395*z_alpha)^(1/-1.487),
-      Sex == "Female" ~ 20.792 * (1 + (-1.423)*0.13033*z_alpha)^(1/-1.423),
-      TRUE ~ NA_real_
-    ),
-    z_bmi = round(z_bmi, 2)
-  )
-
-# 5. BMI Classification ---------------------------------------------------
-classify_iso_bmi <- function(bmi, cutoffs) {
-  case_when(
-    bmi < cutoffs[1] ~ 16,
-    between(bmi, cutoffs[1], cutoffs[2]) ~ 17,
-    between(bmi, cutoffs[2], cutoffs[3]) ~ 18.5,
-    between(bmi, cutoffs[3], cutoffs[4]) ~ 25,
-    between(bmi, cutoffs[4], cutoffs[5]) ~ 30,
-    bmi >= cutoffs[5] ~ 35,
-    TRUE ~ NA_real_
-  )
-}
-
-# 6. Final Processing -----------------------------------------------------
-final_data <- calculated_data %>%
-  mutate(
-    iso_bmi = ifelse(Age < 18,
-                     pmap_dbl(select(., z_bmi, BMI_16:BMI_35),
-                              ~ classify_iso_bmi(..1, c(..2, ..3, ..4, ..5, ..6, ..7))),
-                     z_bmi),
-    iso_bmi_category = case_when(
-      iso_bmi < 18.5 ~ "Underweight",
-      between(iso_bmi, 18.5, 24.9) ~ "Normal",
-      between(iso_bmi, 25, 29.9) ~ "Overweight",
-      iso_bmi >= 30 ~ "Obese",
-      TRUE ~ "Undefined"
-    )
-  )
-
-# 7. Output ---------------------------------------------------------------
-write_csv(final_data, "processed_data_with_iso_bmi.csv")
