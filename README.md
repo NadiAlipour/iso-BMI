@@ -18,6 +18,10 @@ https://editor.codecogs.com/?latex=Z_{ind}&space;=&space;\frac{\left&space;[&spa
 https://latex.codecogs.com/svg.image?20.759\times\left(1&plus;\left(-1.487\right)\times&space;Z_{BMI}\right)^{\left(1/-1.487\right)}
 
 
+<a href="https://latex.codecogs.com/svg.image?20.759\times\left(1&plus;\left(-1.487\right)\times&space;Z_{BMI}\right)^{\left(1/-1.487\right)}" target="_blank"><img src="https://latex.codecogs.com/svg.image?20.759\times\left(1&plus;\left(-1.487\right)\times&space;Z_{BMI}\right)^{\left(1/-1.487\right)}" /></a>
+
+
+
 Reference:
 Cole TJ, Green PJ (1992). Smoothing reference centile curves: the LMS method and penalized likelihood. Statistics in Medicine, 11:1305–1319.
 
