@@ -8,7 +8,7 @@ This code allows to calculate BMI z-scores using LMS reference coefficients in R
 The iso-BMI is a method used to adjust BMI values for age and sex, allowing for consistent interpretation across childhood, adolescence, and adulthood. Since BMI distributions vary with age and sex during growth, the iso-BMI standardizes these values to adult equivalents, enabling the use of the same BMI cut-offs (e.g., overweight, obesity) for all ages.
 - The method utilizes age- and sex-specific BMI distributions from six countries, incorporating parameters such as average age, skewness (L, λ), median BMI (M, µ), and coefficient of variation (S, σ).
 -  The LMS (Lambda-Mu-Sigma) approach generates smoothed BMI growth curves for each sex, averaged across countries.
--   Using coefficients and formulas from Cole and Lobstein [2], the BMI centile for each participant is estimated.
+-   Using coefficients and formulas from Cole and Lobstein, the BMI centile for each participant is estimated.
 -   The calculated centile is then mapped to the corresponding BMI value at age 18 (adulthood), providing the iso-BMI.
 
 ### Formula 1: 
@@ -18,7 +18,7 @@ Z-scores are caculated using following formula:
 <a href="https://latex.codecogs.com/svg.image?Z_{ind}=\frac{\left(BMI/M\right)^{L}-1}{L\times&space;S}"><img src="https://latex.codecogs.com/svg.image?Z_{ind}=\frac{\left(BMI/M\right)^{L}-1}{L\times&space;S}" /></a>
 
 ### Formula 2: 
-The formula for <a href="https://latex.codecogs.com/svg.image?Z_{BMI}"><img src="https://latex.codecogs.com/svg.image?Z_{BMI}" /></a> depends on the value of `Sex`:
+The formula for <a href="https://latex.codecogs.com/svg.image?Z_{BMI}"><img src="https://latex.codecogs.com/svg.image?Z_{BMI}" /></a> depends on the value of `Sex` and `age < 18`:
 
 - If `Sex == 1` (Boys)
   \
