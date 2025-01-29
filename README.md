@@ -9,7 +9,9 @@ The iso-BMI is a method used to adjust BMI values for age and sex, allowing for 
 -  The LMS (Lambda-Mu-Sigma) approach generates smoothed BMI growth curves for each sex, averaged across countries.
 -   Using coefficients and formulas from Cole and Lobstein, the BMI centile for each participant is estimated.
 -   The calculated centile is then mapped to the corresponding BMI value at age 18 (adulthood), providing the iso-BMI.
--   "Example" , a 12.5-year-old girl with a BMI of 22.1 and a 16-year-old boy with a BMI of 23.9 would both be defined as overweight with an iso-BMI of 25. 
+-   *Example* , a 12.5-year-old girl with a BMI of 22.1 and a 16-year-old boy with a BMI of 23.9 would both be defined as overweight with an iso-BMI of 25.
+-   **Example** 
+-   ***Example*** 
 
 
 ### Formula 1: 
