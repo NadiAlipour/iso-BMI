@@ -2,14 +2,15 @@
 
 
 
-## Calculation of iso-BMI from BMI LMS coefficients corresponding to the international (LOTF) cut-offs
+## Calculation of iso-BMI from BMI LMS coefficients corresponding to the international (International Obesity Task Force; IOTF) cut-offs
 
-This code allows to calculate BMI z-scores using LMS reference coefficients in R. 
 The iso-BMI is a method used to adjust BMI values for age and sex, allowing for consistent interpretation across childhood, adolescence, and adulthood. Since BMI distributions vary with age and sex during growth, the iso-BMI standardizes these values to adult equivalents, enabling the use of the same BMI cut-offs (e.g., overweight, obesity) for all ages.
-- The method utilizes age- and sex-specific BMI distributions from six countries, incorporating parameters such as average age, skewness (L, λ), median BMI (M, µ), and coefficient of variation (S, σ).
+- The method utilizes age- and sex-specific BMI distributions from six countries, incorporating parameters such as average age, L (skewness, λ), M (median µ), and S (coefficient of variation σ).
 -  The LMS (Lambda-Mu-Sigma) approach generates smoothed BMI growth curves for each sex, averaged across countries.
 -   Using coefficients and formulas from Cole and Lobstein, the BMI centile for each participant is estimated.
 -   The calculated centile is then mapped to the corresponding BMI value at age 18 (adulthood), providing the iso-BMI.
+-   "Example" , a 12.5-year-old girl with a BMI of 22.1 and a 16-year-old boy with a BMI of 23.9 would both be defined as overweight with an iso-BMI of 25. 
+
 
 ### Formula 1: 
 Z-scores are caculated using following formula: 
